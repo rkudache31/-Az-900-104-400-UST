@@ -1,0 +1,14 @@
+1 Create 2 vm "windows server 2019"  install iis service both VM and create index.html on
+under dev folder for vm1 
+and  create index.html on VM2 under prd folder for vm1 attach application gateway 
+
+Note : 1st VM index.html show message -> "Dev server"
+2nd VM index.html show message -> "prod server"
+
+2 Create 2 VM and attache Standerd LB
+
+3 Create container base webapp use image rkudache31/djangoweb open port 8000
+4 Create 2 VM on deffrent Vnet but need but both Vm communicate with eac other using internal ip
+5 Create NSG roll which replicate to all vm under that subnet
+
+
