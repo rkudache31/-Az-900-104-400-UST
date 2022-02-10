@@ -1,0 +1,12 @@
+version:v1.0,,,,,,,,,,,,,,,,
+Name [displayName] Required,User name [userPrincipalName] Required,Initial password [passwordProfile] Required,Block sign in (Yes/No) [accountEnabled] Required,First name [givenName],Last name [surname],Job title [jobTitle],Department [department],Usage location [usageLocation],Street address [streetAddress],State or province [state],Country or region [country],Office [physicalDeliveryOfficeName],City [city],ZIP or postal code [postalCode],Office phone [telephoneNumber],Mobile phone [mobile]
+Govardhan,Govardhan@lakssolutionssj1.onmicrosoft.com, myPassword1234, No,,,,,,,,,,,,,
+Deepak,Deepak@lakssolutionssj1.onmicrosoft.com, myPassword1234, No,,,,,,,,,,,,,
+Akhil,Akhil@lakssolutionssj1.onmicrosoft.com, myPassword1234, No,,,,,,,,,,,,,
+Harikrishnan,Harikrishnan@lakssolutionssj1.onmicrosoft.com, myPassword1234, No,,,,,,,,,,,,,
+Chaithra,Chaithra@lakssolutionssj1.onmicrosoft.com, myPassword1234, No,,,,,,,,,,,,,
+Arjun,Arjun@lakssolutionssj1.onmicrosoft.com, myPassword1234, No,,,,,,,,,,,,,
+Sreejith,Sreejith@lakssolutionssj1.onmicrosoft.com, myPassword1234, No,,,,,,,,,,,,,
+Srinivas,Srinivas@lakssolutionssj1.onmicrosoft.com, myPassword1234, No,,,,,,,,,,,,,
+Neha,Neha@lakssolutionssj1.onmicrosoft.com, myPassword1234, No,,,,,,,,,,,,,
+Rizvan,Rizvan@lakssolutionssj1.onmicrosoft.com, myPassword1234, No,,,,,,,,,,,,,
