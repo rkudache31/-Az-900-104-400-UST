@@ -1,0 +1,12 @@
+1-Create Private DNS server to communicate with internal   Virtual network
+2- Create Log analytics workspace and integreate with your local VM and azure VM
+3- Create user and assign Dev group and prod group
+user1 - dev
+user2 - dev
+user3 - prod
+user4 - prod
+and provide role so they can create resource under that related group you have to define such role this user can ale to create resource on that froup only
+e:g user1 -> devrg-> create any resource
+    user3 -> prodrg -> create any resource
+4- Create resource group and storage using azure cli 
+
