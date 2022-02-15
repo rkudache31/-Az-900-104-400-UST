@@ -10,3 +10,4 @@ e:g user1 -> devrg-> create any resource
     user3 -> prodrg -> create any resource
 4- Create resource group and storage using azure cli 
 
+MCQ URL:- https://docs.google.com/forms/d/e/1FAIpQLSe-Jnmwf5ipOiFcFdTA7irc31lV85eid4-nYQ5wNyQsVkGHBw/viewform?usp=sf_link
