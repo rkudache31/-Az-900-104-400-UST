@@ -1,0 +1,10 @@
+MCQLink -
+https://docs.google.com/forms/d/e/1FAIpQLSdO3YOFdX2BwoRMpg1EVG_grwbANCj9NTz9RE7UwwqTyp69kw/viewform?usp=sf_link
+
+1-Create your own orgnisation under that orgnaisation create project 
+ create git 2 breanch feature and main
+ upload your  storage using terraform and on feature branch then merge code main     5
+ 
+ 2) Create self hosted agent   2
+ 
+ 3) Create storage using terraform and depoly using azure pipeline  3
