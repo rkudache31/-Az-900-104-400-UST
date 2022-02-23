@@ -1,0 +1,95 @@
+name: infra-deployment-CICD
+pool: 'Myagent'
+trigger:
+- master
+resources:
+- repo: self
+stages:
+- stage: infrabuild
+  jobs:
+  - job: terraforminfradeployment
+    steps:
+      - checkout: self
+      - task: ms-devlabs.custom-terraform-tasks.custom-terraform-installer-task.TerraformInstaller@0
+        displayName: 'Install Terraform latest'
+      - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV2@2
+        displayName: 'Terraform : init'
+        inputs:
+         workingDirectory: Webapp
+         backendServiceArm: serviceconnection
+         backendAzureRmResourceGroupName: terrastg
+         backendAzureRmStorageAccountName: terrastorage31
+         backendAzureRmContainerName: tfstate
+         backendAzureRmKey: webapp.tfstate
+      - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV2@2
+        displayName: 'Terraform : plan'
+        inputs:
+         command: plan
+         workingDirectory: Webapp
+         commandOptions: '--var-file="confg.tfvars"'
+         environmentServiceNameAzureRM: serviceconnection
+      - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV2@2
+        displayName: 'Terraform : apply'
+        inputs:
+         command: apply
+         workingDirectory: Webapp
+         commandOptions: '--var-file="confg.tfvars"'
+         environmentServiceNameAzureRM: serviceconnection      
+  
+- stage: appbuild
+  variables:
+   solution: '**\*.sln'
+   buildplatform: 'Any CPU'
+   buildconfiguration: 'Release'
+
+  jobs:
+   - job: build
+     steps:
+     - checkout: self
+      
+     - task: NuGetToolInstaller@0
+       displayName: 'Use NuGet 4.4.1'
+       inputs:
+         versionSpec: 4.4.1
+         
+     - task: NuGetCommand@2
+       displayName: 'NuGet restore'
+       inputs:
+         restoreSolution: '**\*.sln'    
+
+     - task: VSBuild@1
+       displayName: 'Build solution'
+       inputs:
+        solution: '**\*.sln'
+        msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactstagingdirectory)\\"'
+        platform: '$(BuildPlatform)'
+        configuration: '$(BuildConfiguration)'
+
+     - task: PublishSymbols@2
+       displayName: 'Publish symbols path'
+       inputs:
+        SearchPattern: '**\bin\**\*.pdb'
+        PublishSymbols: false
+        continueOnError: true
+
+     - task: PublishBuildArtifacts@1
+       displayName: 'Publish Artifact'
+       inputs:
+        PathtoPublish: '$(build.artifactstagingdirectory)'
+        ArtifactName: '$(Parameters.ArtifactName)'
+        condition: succeededOrFailed()
+
+     - task: AzureRmWebAppDeployment@4
+       displayName: 'Azure App Service Deploy: Webapp2ramesh'
+       inputs:
+        azureSubscription: serviceconnection
+        WebAppName: Webapp2ramesh
+        apptype: 'webApp'
+        packageForLinux: '$(build.artifactstagingdirectory)/**.zip'
+        
+
+
+
+
+
+
